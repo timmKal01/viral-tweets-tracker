@@ -1,0 +1,192 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "posts": {
+            "title": "Viral posts",
+            "transformation": {
+                "fields": [
+                    "url",
+                    "authorUsername",
+                    "text",
+                    "kind",
+                    "likes",
+                    "reposts",
+                    "replies",
+                    "views",
+                    "engagementRate",
+                    "likesPerHour",
+                    "authorFollowers",
+                    "createdAt",
+                    "matchedTopic"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": {
+                        "label": "Post",
+                        "format": "link"
+                    },
+                    "authorUsername": {
+                        "label": "Author",
+                        "format": "text"
+                    },
+                    "text": {
+                        "label": "Text",
+                        "format": "text"
+                    },
+                    "kind": {
+                        "label": "Kind",
+                        "format": "text"
+                    },
+                    "likes": {
+                        "label": "Likes",
+                        "format": "number"
+                    },
+                    "reposts": {
+                        "label": "Reposts",
+                        "format": "number"
+                    },
+                    "replies": {
+                        "label": "Replies",
+                        "format": "number"
+                    },
+                    "views": {
+                        "label": "Views",
+                        "format": "number"
+                    },
+                    "engagementRate": {
+                        "label": "Engagement rate",
+                        "format": "number"
+                    },
+                    "likesPerHour": {
+                        "label": "Likes per hour",
+                        "format": "number"
+                    },
+                    "authorFollowers": {
+                        "label": "Followers",
+                        "format": "number"
+                    },
+                    "createdAt": {
+                        "label": "Posted",
+                        "format": "date"
+                    },
+                    "matchedTopic": {
+                        "label": "Found by",
+                        "format": "text"
+                    }
+                }
+            }
+        },
+        "media": {
+            "title": "Videos, images and links",
+            "transformation": {
+                "fields": [
+                    "url",
+                    "kind",
+                    "videoViews",
+                    "videoDurationSec",
+                    "videoUrl",
+                    "videoPreviewUrl",
+                    "images",
+                    "articleTitle",
+                    "links"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": {
+                        "label": "Post",
+                        "format": "link"
+                    },
+                    "kind": {
+                        "label": "Kind",
+                        "format": "text"
+                    },
+                    "videoViews": {
+                        "label": "Video views",
+                        "format": "number"
+                    },
+                    "videoDurationSec": {
+                        "label": "Seconds",
+                        "format": "number"
+                    },
+                    "videoUrl": {
+                        "label": "Video file",
+                        "format": "link"
+                    },
+                    "videoPreviewUrl": {
+                        "label": "Preview",
+                        "format": "image"
+                    },
+                    "images": {
+                        "label": "Images",
+                        "format": "array"
+                    },
+                    "articleTitle": {
+                        "label": "Article",
+                        "format": "text"
+                    },
+                    "links": {
+                        "label": "Links",
+                        "format": "array"
+                    }
+                }
+            }
+        },
+        "status": {
+            "title": "Trends, notes and errors",
+            "transformation": {
+                "fields": [
+                    "rowType",
+                    "rank",
+                    "trend",
+                    "postCount",
+                    "location",
+                    "matchedTopic",
+                    "note",
+                    "error"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "rowType": {
+                        "label": "Row type",
+                        "format": "text"
+                    },
+                    "rank": {
+                        "label": "Rank",
+                        "format": "number"
+                    },
+                    "trend": {
+                        "label": "Trend",
+                        "format": "text"
+                    },
+                    "postCount": {
+                        "label": "Posts",
+                        "format": "number"
+                    },
+                    "location": {
+                        "label": "Location",
+                        "format": "text"
+                    },
+                    "matchedTopic": {
+                        "label": "Search",
+                        "format": "text"
+                    },
+                    "note": {
+                        "label": "Note",
+                        "format": "text"
+                    },
+                    "error": {
+                        "label": "Error",
+                        "format": "text"
+                    }
+                }
+            }
+        }
+    }
+}

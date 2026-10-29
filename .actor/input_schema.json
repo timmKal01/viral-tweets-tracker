@@ -1,0 +1,133 @@
+{
+    "title": "Viral Tweets Tracker input",
+    "type": "object",
+    "schemaVersion": 1,
+    "description": "Find the X (Twitter) posts, videos and articles getting the most likes, reposts and views for your topics, for chosen accounts, or for what's trending. Runs on the official X API with your own Bearer Token, so X bills its reads to your X developer account.",
+    "properties": {
+        "xBearerToken": {
+            "title": "X API Bearer Token",
+            "type": "string",
+            "editor": "textfield",
+            "isSecret": true,
+            "description": "Your own X API Bearer Token. At console.x.com, create an app, add pay-per-use credits, then copy the Bearer Token from the app's \"Keys and tokens\" page. It's stored encrypted, sent only to api.x.com and never logged. X bills your developer account for what each search returns, at its own prices (October 2026: $0.005 a post, $0.010 a user profile). Without a token the run only explains this, free."
+        },
+        "topics": {
+            "title": "Topics",
+            "type": "array",
+            "editor": "stringList",
+            "prefill": ["AI agents", "#buildinpublic"],
+            "description": "Keywords, #hashtags, $cashtags or @mentions. Each one is its own search. Several words are searched as an exact phrase; write your own X search query (with OR, quotes or operators like url:) for anything else. Leave Topics and Accounts empty to search what's trending instead."
+        },
+        "accounts": {
+            "title": "Accounts",
+            "type": "array",
+            "editor": "stringList",
+            "description": "X handles (like \"nasa\", \"@nasa\" or \"x.com/nasa\") whose posts that pass the filters below you want back. Accounts are searched together in as few searches as fit X's 512-character query limit."
+        },
+        "trendsLocation": {
+            "title": "Trends from",
+            "type": "string",
+            "editor": "select",
+            "sectionCaption": "Trending (used only when Topics and Accounts are empty)",
+            "enum": ["worldwide", "us", "uk", "canada", "australia", "india", "nigeria", "kenya", "south_africa", "germany", "france", "spain", "brazil", "mexico", "japan", "philippines"],
+            "enumTitles": ["Worldwide", "United States", "United Kingdom", "Canada", "Australia", "India", "Nigeria", "Kenya", "South Africa", "Germany", "France", "Spain", "Brazil", "Mexico", "Japan", "Philippines"],
+            "default": "worldwide",
+            "description": "Where X's trending topics come from. Each trend becomes one search, and the trends themselves are saved as free rows. X bills one trends request at $0.010."
+        },
+        "trendCount": {
+            "title": "Number of trends",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20,
+            "default": 5,
+            "description": "How many of the top trends to search, from 1 to 20."
+        },
+        "contentType": {
+            "title": "Content",
+            "type": "string",
+            "editor": "select",
+            "sectionCaption": "Filters",
+            "enum": ["all", "videos", "images", "articles", "text"],
+            "enumTitles": ["All posts", "Videos only", "Images only", "Articles and links only", "Text only"],
+            "default": "all",
+            "description": "Which posts to keep. Videos means native X videos. Articles keeps X Articles and posts that link to a page outside X; X still returns, and bills, the other posts with links, which are then left out."
+        },
+        "minLikes": {
+            "title": "Minimum likes",
+            "type": "integer",
+            "minimum": 0,
+            "default": 500,
+            "description": "Only posts with at least this many likes, 0 or more. X applies it in the search itself, so posts below it are never returned or billed."
+        },
+        "minReposts": {
+            "title": "Minimum reposts",
+            "type": "integer",
+            "minimum": 0,
+            "default": 0,
+            "description": "Only posts with at least this many reposts, 0 or more (0 means no minimum). Applied by X in the search."
+        },
+        "minReplies": {
+            "title": "Minimum replies",
+            "type": "integer",
+            "minimum": 0,
+            "default": 0,
+            "description": "Only posts with at least this many replies, 0 or more (0 means no minimum). Applied by X in the search."
+        },
+        "sinceHours": {
+            "title": "Posted in the last (hours)",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 168,
+            "default": 24,
+            "description": "How far back to look, from 1 to 168 hours. X's recent search reaches back 7 days."
+        },
+        "language": {
+            "title": "Language",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Only posts X classifies as this language: a two-letter code like \"en\", \"es\" or \"ja\". Leave empty for every language."
+        },
+        "includeReplies": {
+            "title": "Include replies",
+            "type": "boolean",
+            "default": false,
+            "description": "Also return replies that pass the filters. Off by default, so you get original posts and quotes. Reposts are never returned; the original post is."
+        },
+        "verifiedOnly": {
+            "title": "Verified accounts only",
+            "type": "boolean",
+            "default": false,
+            "description": "Only posts from accounts X marks as verified."
+        },
+        "maxPostsPerSearch": {
+            "title": "Max posts per search",
+            "type": "integer",
+            "sectionCaption": "Output",
+            "minimum": 10,
+            "maximum": 500,
+            "default": 20,
+            "description": "Most posts each topic, trend or account group returns, from 10 to 500. X picks the most relevant first. This caps what X bills too."
+        },
+        "sortBy": {
+            "title": "Sort by",
+            "type": "string",
+            "editor": "select",
+            "enum": ["engagements", "views", "likes", "likesPerHour", "newest"],
+            "enumTitles": ["Engagements (likes + reposts + replies + quotes + bookmarks)", "Views", "Likes", "Likes per hour (fastest rising)", "Newest"],
+            "default": "engagements",
+            "description": "Order of the saved posts across all searches."
+        },
+        "includeAuthorDetails": {
+            "title": "Include author details",
+            "type": "boolean",
+            "default": true,
+            "description": "Each post's author handle, name, followers and verified badge, plus views per follower. Turn off to save on X's bill, where user profiles cost more than posts; post links then use x.com/i/status/ID."
+        },
+        "onlyNew": {
+            "title": "Only posts not returned before",
+            "type": "boolean",
+            "default": false,
+            "description": "For scheduled runs: skip posts an earlier run with this on already returned (remembered in a key-value store in your account named viral-tweets-tracker-seen). Skipped posts aren't charged here, but X still bills their read."
+        }
+    }
+}

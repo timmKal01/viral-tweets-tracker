@@ -1,0 +1,16 @@
+{
+    "name": "viral-tweets-tracker",
+    "version": "0.1.0",
+    "type": "module",
+    "description": "Viral X (Twitter) posts, videos and articles for topics, accounts or trends, with likes, reposts, views, engagement rate and likes per hour, from the official X API with the user's own Bearer Token.",
+    "engines": {
+        "node": ">=20.0.0"
+    },
+    "dependencies": {
+        "apify": "^3.2.6"
+    },
+    "scripts": {
+        "start": "node src/main.js",
+        "test": "node --test"
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Output schema of Viral Tweets Tracker",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Viral posts",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "viral-post": {
+        "eventTitle": "Viral post",
+        "eventDescription": "One X post saved that passed your filters, with its likes, reposts, replies, views, engagement rate, likes per hour, author and any video, images, article or links. Trends, notes, errors and posts skipped by onlyNew or the articles filter are free. X bills its own reads to your X developer account separately.",
+        "eventPriceUsd": 0.002
+    }
+}

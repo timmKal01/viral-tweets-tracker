@@ -1,0 +1,19 @@
+{
+    "actorSpecification": 1,
+    "name": "viral-tweets-tracker",
+    "title": "Viral Tweets Tracker: X (Twitter) Posts, Videos & Articles",
+    "description": "Viral tweets for any topic, account or trend: the X posts, videos and articles with the most likes, reposts and views, plus engagement rate and likes per hour. Official X API with your own key: no cookies, no proxies, no X login.",
+    "version": "0.1",
+    "meta": {
+        "templateId": "custom-no-proxy"
+    },
+    "input": "./input_schema.json",
+    "output": "./output_schema.json",
+    "dockerfile": "../Dockerfile",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "defaultMemoryMbytes": 256,
+    "minMemoryMbytes": 128,
+    "maxMemoryMbytes": 1024
+}
