@@ -2,7 +2,7 @@
     "actorSpecification": 1,
     "name": "viral-tweets-tracker",
     "title": "Viral Tweets Tracker: X (Twitter) Posts, Videos & Articles",
-    "description": "Viral tweets for any topic, account or trend: the X posts, videos and articles with the most likes, reposts and views, plus engagement rate and likes per hour. Official X API with your own key: no cookies, no proxies, no X login.",
+    "description": "Viral tweet finder for any topic, account or trend: the viral posts, videos and articles on X with the most likes, reposts and views, plus engagement rate and likes per hour. Official X API with your own key: no cookies, no proxies, no X login.",
     "version": "0.1",
     "meta": {
         "templateId": "custom-no-proxy"
