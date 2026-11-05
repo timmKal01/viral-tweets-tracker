@@ -1,5 +1,6 @@
 // One post from X's recent search (with its author and media from `includes`) -> one output row, with the numbers
-// people use to judge how viral it is.
+// people use to judge how viral it is, and what the post looks like (pattern.js).
+import { postPattern } from './pattern.js';
 
 const X_HOSTS = /^(www\.|mobile\.)?(x|twitter)\.com$/i;
 const X_ARTICLE = /^https?:\/\/(www\.)?(x|twitter)\.com\/i\/article\//i;
@@ -99,6 +100,7 @@ export function toPostRow(post, { users, media }, { topic, now = Date.now() }) {
         quotedPostUrl: quoted ? `https://x.com/i/status/${quoted}` : null,
         isReply: Boolean(repliedTo),
         possiblySensitive: Boolean(post.possibly_sensitive),
+        ...postPattern(post.note_tweet?.text ?? post.text, post.created_at, { isLongPost: Boolean(post.note_tweet) }),
         matchedTopic: topic,
     };
 }

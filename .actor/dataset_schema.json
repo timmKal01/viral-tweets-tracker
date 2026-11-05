@@ -187,6 +187,83 @@
                     }
                 }
             }
+        },
+        "patterns": {
+            "title": "Why it went viral",
+            "transformation": {
+                "fields": [
+                    "url",
+                    "hook",
+                    "kind",
+                    "charCount",
+                    "lineCount",
+                    "listItems",
+                    "hasQuestion",
+                    "hookHasNumber",
+                    "threadMarker",
+                    "postedHourUtc",
+                    "postedWeekdayUtc",
+                    "likes",
+                    "likesPerHour"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": {
+                        "label": "Post",
+                        "format": "link"
+                    },
+                    "hook": {
+                        "label": "Opening line",
+                        "format": "text"
+                    },
+                    "kind": {
+                        "label": "Kind",
+                        "format": "text"
+                    },
+                    "charCount": {
+                        "label": "Characters",
+                        "format": "number"
+                    },
+                    "lineCount": {
+                        "label": "Lines",
+                        "format": "number"
+                    },
+                    "listItems": {
+                        "label": "List items",
+                        "format": "number"
+                    },
+                    "hasQuestion": {
+                        "label": "Asks a question",
+                        "format": "boolean"
+                    },
+                    "hookHasNumber": {
+                        "label": "Number in opening",
+                        "format": "boolean"
+                    },
+                    "threadMarker": {
+                        "label": "Opens a thread",
+                        "format": "boolean"
+                    },
+                    "postedHourUtc": {
+                        "label": "Hour (UTC)",
+                        "format": "number"
+                    },
+                    "postedWeekdayUtc": {
+                        "label": "Day (UTC)",
+                        "format": "text"
+                    },
+                    "likes": {
+                        "label": "Likes",
+                        "format": "number"
+                    },
+                    "likesPerHour": {
+                        "label": "Likes per hour",
+                        "format": "number"
+                    }
+                }
+            }
         }
     }
 }

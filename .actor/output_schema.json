@@ -6,6 +6,11 @@
             "type": "string",
             "title": "Viral posts",
             "template": "{{links.apiDefaultDatasetUrl}}/items"
+        },
+        "patterns": {
+            "type": "string",
+            "title": "What the viral posts have in common",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/PATTERNS"
         }
     }
 }

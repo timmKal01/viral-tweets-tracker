@@ -6,6 +6,7 @@ import { EVENTS, MAX_LOOKBACK_MS, DEADLINE_MARGIN_MS, SEEN_STORE, SEEN_KEY, SEEN
 import { buildQueries } from './query.js';
 import { searchRecent, getTrends } from './xapi.js';
 import { toPostRow, includesMaps, SORTS } from './post.js';
+import { summarizePatterns } from './pattern.js';
 import { NO_TOKEN_NOTE, emptyRunReason, noteRow, errorRow } from './note.js';
 
 await Actor.init();
@@ -117,13 +118,19 @@ for (const q of queries) {
 // 3. Save, best first by the chosen measure.
 const foundAt = new Date().toISOString();
 let saved = 0;
+const savedRows = [];
 for (const row of [...rows.values()].sort(SORTS[sortBy])) {
     const result = await Actor.pushData({ ...row, foundAt }, EVENTS.post);
     saved++;
+    savedRows.push(row);
     if (result?.eventChargeLimitReached) {
         log.warning('The run reached its maximum cost (set by the user); stopping.');
         break;
     }
+}
+// What the saved posts have in common, in the key-value store, not the dataset (every dataset row is a post).
+if (saved) {
+    await Actor.setValue('PATTERNS', { ...summarizePatterns(savedRows), sinceHours, minLikes, searches: queries.map((q) => q.label), finishedAt: foundAt });
 }
 if (seenStore && saved) {
     const ids = [...seenBefore, ...[...rows.keys()]].slice(-SEEN_LIMIT);

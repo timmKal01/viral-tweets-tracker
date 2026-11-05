@@ -1,6 +1,6 @@
 # Viral Tweets Tracker: X (Twitter) Posts, Videos & Articles
 
-Find the X posts that are taking off: give topics, accounts, or nothing at all to use what's trending. You get each viral post with its likes, reposts, replies, quotes, bookmarks and views, its engagement rate and likes per hour, its author's followers, and any video file, images, article or links in it.
+Find the X posts that are taking off: give topics, accounts, or nothing at all to use what's trending. You get each viral post with its likes, reposts, replies, quotes, bookmarks and views, its engagement rate and likes per hour, its author's followers, and any video file, images, article or links in it. Each row also shows what the post looks like: its opening line, length, lists and questions, and the hour it went out, so you can see why it worked.
 
 It runs on the **official X API with your own X API key**. You never hand over an X login, cookies or a password, and no proxies are used, so there's no account to get banned.
 
@@ -69,6 +69,10 @@ A search for "AI agents" in articles-only mode the same day kept 7 of the 10 pos
 | `article`, `articleTitle` | X Articles |
 | `links` | Links outside X, with the page title and description when X has them |
 | `hashtags`, `mentions`, `lang`, `isQuote`, `quotedPostUrl`, `isReply`, `possiblySensitive` | The rest of what X says about the post |
+| `hook`, `hookWords`, `hookHasNumber` | The post's opening line (links left out), its length in words, and whether it has a number |
+| `charCount`, `wordCount`, `lineCount`, `listItems` | How long the post is, and how many of its lines are list items (`-`, `•`, `1.`) |
+| `hasQuestion`, `threadMarker`, `isLongPost` | Whether it asks a question, opens a thread (🧵, "thread" or a 1/ counter), and runs past 280 characters |
+| `postedHourUtc`, `postedWeekdayUtc` | When it went out, in UTC |
 | `matchedTopic` | Which topic, trend or account group found it |
 
 Every row has a `rowType`:
@@ -79,9 +83,30 @@ Every row has a `rowType`:
 
 Notes and errors are never charged.
 
+## Why it went viral
+
+The Output tab has a second view, **Why it went viral**, with each post's opening line, length, lists, questions and posting hour next to its likes. Every run also saves a summary of the posts it found, as the record `PATTERNS` in the run's key-value store: which formats won, the median length, how many asked a question or used a list, and the busiest posting hours.
+
+From a real run on 2026-11-05 ("indie hackers", 200+ likes, last 3 days, 4 posts):
+
+```json
+{
+    "posts": 4,
+    "kinds": { "image": { "posts": 3, "share": 0.75, "medianLikes": 295 }, "text": { "posts": 1, "share": 0.25, "medianLikes": 261 } },
+    "medianChars": 292,
+    "medianLines": 6,
+    "medianHookWords": 3.5,
+    "withQuestion": 0.25,
+    "withList": 0.25,
+    "longPosts": 0.5
+}
+```
+
+Run the same topic every day and the summaries add up to a picture of what works in your niche.
+
 ## Input
 
-1. **X API Bearer Token.** At [console.x.com](https://console.x.com), create an app, add pay-per-use credits, and copy the Bearer Token from the app's "Keys and tokens" page. Paste it in once; Apify stores it encrypted.
+1. **X API Bearer Token.** At [console.x.com](https://console.x.com), sign in with your X account, create an app, add pay-per-use credits, and copy the Bearer Token from the app's "Keys and tokens" page. Paste it in once; Apify stores it encrypted. At X's prices, $5 of credits reads 1,000 posts, or at least 330 with author details on.
 2. **What to search.** Choose one of these:
    - **Topics:** keywords, #hashtags, $cashtags or exact phrases. You can also use your own X search query with OR, quotes or operators such as `url:`.
    - **Accounts:** handles to watch.
